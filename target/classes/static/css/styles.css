@@ -1,0 +1,4 @@
+.card-img {
+    width: 100%; /* Set the width to 100% of its container */
+    max-height: 160px;
+}

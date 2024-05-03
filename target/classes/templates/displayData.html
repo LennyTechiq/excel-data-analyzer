@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Display Excel Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Excel Data Analyzer</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Upload Excel</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h2>Excel Data</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th th:each="header : ${columnHeaders}" th:text="${header}"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="data : ${dataList}">
+                        <td th:text="${data.firstName}" data-column="firstName"></td>
+                        <td th:text="${data.middleName}" data-column="middleName"></td>
+                        <td th:text="${data.lastName}" data-column="lastName"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-auto">
+            <div class="form-group">
+                <select id="columnSelect" class="form-control">
+                    <option value="firstName">First Name</option>
+                    <option value="middleName">Middle Name</option>
+                    <option value="lastName">Last Name</option>
+                    <!-- Add more options if needed -->
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="countsRow" style="display: none;">
+        <div class="col">
+            <h4>Name Counts:</h4>
+            <div id="nameCounts"></div>
+        </div>
+    </div>
+</div>
+<script src="./js/script.js"></script>
+</body>
+</html>
